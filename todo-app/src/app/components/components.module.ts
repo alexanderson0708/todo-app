@@ -2,15 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { CardComponent } from './card/card.component';
-import { ErrPageComponent } from './err-page/err-page.component';
 import { HeaderComponent } from './header/header.component';
 import { NewCardComponent } from './new-card/new-card.component';
 import { EditCardComponent } from './edit-card/edit-card.component';
 import { RemoveCardComponent } from './remove-card/remove-card.component';
-import { MainPageComponent } from '../pages/main-page/main-page.component';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {SharedModule} from "../shared/shared.module";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, NgModel, ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
@@ -22,6 +20,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import {AddCardBtnComponent} from "./add-card-btn/add-card-btn.component";
+import { LoadingBlockComponent } from './loading-block/loading-block.component';
 
 
 
@@ -29,12 +28,12 @@ import {AddCardBtnComponent} from "./add-card-btn/add-card-btn.component";
   declarations: [
     BreadcrumbComponent,
     CardComponent,
-    ErrPageComponent,
     HeaderComponent,
     NewCardComponent,
     EditCardComponent,
     RemoveCardComponent,
     AddCardBtnComponent,
+    LoadingBlockComponent,
   ],
   imports: [
     CommonModule,
@@ -57,12 +56,12 @@ import {AddCardBtnComponent} from "./add-card-btn/add-card-btn.component";
   exports: [
     BreadcrumbComponent,
     CardComponent,
-    ErrPageComponent,
     HeaderComponent,
     NewCardComponent,
     EditCardComponent,
     RemoveCardComponent,
-    AddCardBtnComponent
+    AddCardBtnComponent,
+    LoadingBlockComponent
   ],
 })
 export class ComponentsModule { }

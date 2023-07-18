@@ -12,7 +12,7 @@ export class AuthEffect{
   login$ = createEffect(() => this.actions$.pipe(
     ofType(login),
     switchMap( action => this.authService.login({
-      login: action.login,
+      email: action.email,
       password: action.password
       }
     ).pipe(

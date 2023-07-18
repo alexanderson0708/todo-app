@@ -3,7 +3,7 @@ import { AuthState } from "./auth.state";
 
 export const login = createAction(
   '[Auth] LOGIN',
-  props<{login:string, password:string}>()
+  props<{email:string, password:string}>()
 );
 export const loginSuccess = createAction(
   '[Auth] LOGIN SUCCESS',

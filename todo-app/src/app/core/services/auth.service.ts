@@ -14,8 +14,8 @@ export class AuthService implements OnInit{
   ngOnInit() {
   }
 
-  login(body:{login:string, password:string}):Observable<{token:string}>{
-    return (this.http.post(`${serverUrl}auth/token/login`, body) as Observable<{token:string}>)
+  login(body:{email:string, password:string}):Observable<{token:string}>{
+    return (this.http.post(`${serverUrl}auth/token/login/`, body) as Observable<{token:string}>)
   }
 
   logout(){

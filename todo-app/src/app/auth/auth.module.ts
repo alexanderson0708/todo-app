@@ -18,6 +18,9 @@ import {RouterLink} from "@angular/router";
     LoginComponent,
     RegistrationComponent
   ],
+  exports: [
+    LoginComponent
+  ],
   imports: [
     CommonModule,
     MatButtonModule,

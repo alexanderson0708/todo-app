@@ -1,10 +1,10 @@
-<div class="add-card-wrapper">
+<form class="add-card-wrapper" [formGroup] = "newTodoGroup">
   <p class="add-card-title">Create new card</p>
-
   <div class="title-container">
     <p class="title-label">Title</p>
     <mat-form-field>
-      <input matInput placeholder="Ex. Pizza">
+      <input matInput placeholder="Ex. Pizza"
+      formControlName = "title">
     </mat-form-field>
   </div>
 
@@ -12,7 +12,8 @@
     <p class="date-label">Date</p>
     <mat-form-field>
       <mat-label>Choose a date</mat-label>
-      <input matInput [matDatepicker]="picker">
+      <input matInput [matDatepicker]="picker"
+             formControlName = "date">
       <mat-hint>MM/DD/YYYY</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
@@ -20,18 +21,20 @@
   </div>
 
   <div class="description-container">
-    <p class="description-label">Description</p>
+    <p class="description-label">Description(optional)</p>
     <mat-form-field>
       <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
     </mat-form-field>
   </div>
 
   <div class="directory-container">
-    <p class="description-label">Description</p>
+    <p class="description-label">Priority</p>
     <mat-form-field>
-      <mat-select>
-        <mat-option value="one">Main-task</mat-option>
-        <mat-option value="two">Subtask</mat-option>
+      <mat-select
+        [(value)]="selected"
+        formControlName = "priority">
+        <mat-option value="main">Main-task</mat-option>
+        <mat-option value="subtask">Subtask</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
@@ -40,4 +43,4 @@
     <button mat-raised-button class="confirm-btn" color="accent" >Submit</button>
     <button (click)="goToHome()" mat-raised-button color="warn" class="cancel-btn">Cancel</button>
   </div>
-</div>
+</form>

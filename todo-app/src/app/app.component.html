@@ -1,9 +1,4 @@
 <div class="app-wrapper">
-  <!--  <app-header></app-header>-->
-  <!--  <app-main-page></app-main-page>-->
-  <!--  <router-outlet></router-outlet>-->
-  <!--  <app-new-card></app-new-card>-->
-  <!--  <app-login></app-login>-->
-  <!--  <app-registration></app-registration>-->
-  <app-err-page></app-err-page>
+    <router-outlet></router-outlet>
+  <app-loading-block *ngIf="isLoading"></app-loading-block>
 </div>

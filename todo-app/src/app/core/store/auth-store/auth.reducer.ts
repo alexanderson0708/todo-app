@@ -33,33 +33,7 @@ export const authReducer = createReducer(initialAuthState,
       authStatus:false
     }
   }),
-  // on(AuthActions.getUserInfo, state =>{
-  //   console.log('GET USER INFO action being handled!');
-  //   return {
-  //     ...state,
-  //     loading:true,
-  //   }
-  // }),
-  // on(AuthActions.getUserInfoError, (state, {error}) =>{
-  //   console.log('GET USER INFO ERROR action being handled!');
-  //   return {
-  //     ...state,
-  //     loading:true,
-  //     loaded:false,
-  //     error,
-  //   }
-  // }),
-  // on(AuthActions.getUserInfoSuccess, (state, {user}) =>{
-  //   console.log('GET USER INFO SUCCESS action being handled!');
-  //   return {
-  //     ...state,
-  //     user,
-  //     authStatus:true,
-  //     loading:false,
-  //     loaded:true,
-  //     error:''
-  //   }
-  // }),
+
   on(AuthActions.logout, state =>{
     console.log('LOGOUT action being handled!');
     return {

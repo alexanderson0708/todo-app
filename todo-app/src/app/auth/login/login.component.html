@@ -9,11 +9,11 @@
   <div class="login-container">
     <p class="email-title">Email</p>
     <mat-form-field>
-      <mat-error *ngIf="formGroup.hasError('required','login')">*required</mat-error>
+      <mat-error *ngIf="formGroup.hasError('required','email')">*required</mat-error>
       <input type="email"
              matInput
              placeholder="Ex. pat@example.com"
-             formControlName = "login">
+             formControlName = "email">
     </mat-form-field>
 
     <p class="password-title">Password</p>

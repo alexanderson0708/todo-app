@@ -3,14 +3,15 @@ import {RouterModule, Routes} from "@angular/router";
 import {MainPageComponent} from "./pages/main-page/main-page.component";
 import {LoginComponent} from "./auth/login/login.component";
 import {RegistrationComponent} from "./auth/registration/registration.component";
-import {NewCardComponent} from "./components/new-card/new-card.component";
-import {ErrPageComponent} from "./components/err-page/err-page.component";
+import {ErrPageComponent} from "./pages/error-page/err-page.component";
+import {CreatePageComponent} from "./pages/create-todo-page/create-page.component";
+import {LoginPageComponent} from "./pages/login-page/login-page.component";
 
 const routes:Routes = [
   {path: '', component:MainPageComponent},
-  {path: 'login', component:LoginComponent},
+  {path: 'login', component:LoginPageComponent},
   {path: 'registration', component:RegistrationComponent},
-  {path: 'create-todo', component:NewCardComponent},
+  {path: 'create-todo', component:CreatePageComponent},
   {path: 'error', component:ErrPageComponent},
   {path: '**', redirectTo:'error'},
 ]

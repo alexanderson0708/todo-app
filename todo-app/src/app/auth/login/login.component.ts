@@ -6,6 +6,7 @@ import {Observable} from "rxjs";
 import * as AuthSelectors from '../../core/store/auth-store/auth.selector'
 import {AuthToken, login} from "../../core/store";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../../core/services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -24,12 +25,13 @@ export class LoginComponent {
   getToken$: Observable<string|AuthToken|undefined> = this.store$.pipe(select(AuthSelectors.getAccessToken))
 
   constructor(
+    private authService:AuthService,
     private router:Router,
     // private loadingBlock: LoadingBlockService
     private store$:Store<AppState>
   ) {
     this.formGroup = new FormGroup({
-      login: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required])
 
     })
@@ -48,7 +50,11 @@ export class LoginComponent {
   }
 
   onLogin(){
-    this.store$.dispatch(login(this.formGroup.value))
-    console.log()
+    this.authService.login(this.formGroup.value).subscribe((res)=>{
+      console.log(res)
+      console.log(1)
+    })
+    // this.store$.dispatch(login(this.formGroup.value))
+    console.log(this.formGroup.value)
   }
 }
