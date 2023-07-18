@@ -1,0 +1,17 @@
+<div class="header-wrapper">
+  <div class="logo-container" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+    <mat-icon class="logo">done_all</mat-icon>
+    <a [routerLink]="['/']"
+       class="text">#JUSTTODOIT</a>
+  </div>
+  <div class="auth-container">
+    <a [routerLink]="['/login']" class="user-login">
+      <mat-icon>person_outline</mat-icon>
+      username
+    </a>
+    <a href="" class="logout">
+      <mat-icon>exit_to_app</mat-icon>
+      logout
+    </a>
+  </div>
+</div>

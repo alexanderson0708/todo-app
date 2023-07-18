@@ -1,0 +1,33 @@
+.card-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 80px;
+  padding: 1rem;
+  background: #6B6E70;
+  color: white;
+  border-radius: 0.5rem;
+}
+.title{
+  font-size: 1rem;
+  padding: 0.5rem 1rem 1rem 0;
+}
+.task-description, .task-date{
+  font-size: 0.8rem;
+}
+.card-btns-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 350px;
+  flex-wrap: wrap;
+}
+
+.btn-complete{
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+.task-date{
+  padding-top: 1.5rem;
+}

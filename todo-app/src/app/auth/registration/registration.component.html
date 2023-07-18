@@ -1,0 +1,37 @@
+<form class="registration-form">
+  <p class="registration-title">Registration</p>
+  <div class="registration-container">
+    <p class="email-title">Name</p>
+    <mat-form-field>
+      <input type="text"
+             matInput
+             placeholder="John">
+    </mat-form-field>
+
+    <p class="email-title">Email</p>
+    <mat-form-field>
+      <input type="email"
+             matInput
+             placeholder="Ex. pat@example.com">
+    </mat-form-field>
+
+    <p class="password-title">Password</p>
+    <mat-form-field>
+      <input type="password"
+             matInput
+             placeholder="**********">
+    </mat-form-field>
+
+    <p class="confirm-password-title">Confirm password</p>
+    <mat-form-field>
+      <input type="password"
+             matInput
+             placeholder="**********">
+    </mat-form-field>
+  </div>
+
+  <div class="btns-container">
+    <button mat-raised-button class="confirm-btn" color="accent" >Submit</button>
+    <button (click)="goToHome()" mat-raised-button color="warn" class="cancel-btn">Cancel</button>
+  </div>
+</form>

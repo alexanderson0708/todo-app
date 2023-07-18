@@ -1,0 +1,34 @@
+.registration-form{
+  display: flex;
+  flex-direction: column;
+  background-color: #222629;
+  margin: 1.5rem auto;
+  border-radius: 0.5rem;
+  max-width: 500px;
+  padding: 1.5rem;
+  row-gap: 1rem;
+  color: white;
+}
+.registration-container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.registration-title{
+  font-family: 'Bebas Neue', sans-serif;
+  color: white;
+  font-size: 1.5rem;
+  padding-bottom: 1rem;
+}
+.btns-container{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.confirm-btn,.cancel-btn{
+  max-width: 200px;
+  width: 100%;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: bold;
+}

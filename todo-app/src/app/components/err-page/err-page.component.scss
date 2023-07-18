@@ -1,0 +1,21 @@
+.err-page-wrapper{
+  position: absolute;
+  background: #222629;
+  width: 100%;
+  min-height: 100vh;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.err-text{
+  font-size: 5rem;
+  font-family: 'Bebas Neue', sans-serif;
+  color: white;
+}
+
+.err-btn{
+  font-family: 'Roboto Condensed', sans-serif;
+}

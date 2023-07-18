@@ -1,0 +1,43 @@
+<div class="add-card-wrapper">
+  <p class="add-card-title">Create new card</p>
+
+  <div class="title-container">
+    <p class="title-label">Title</p>
+    <mat-form-field>
+      <input matInput placeholder="Ex. Pizza">
+    </mat-form-field>
+  </div>
+
+  <div class="date-container">
+    <p class="date-label">Date</p>
+    <mat-form-field>
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div class="description-container">
+    <p class="description-label">Description</p>
+    <mat-form-field>
+      <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="directory-container">
+    <p class="description-label">Description</p>
+    <mat-form-field>
+      <mat-select>
+        <mat-option value="one">Main-task</mat-option>
+        <mat-option value="two">Subtask</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="btns-container">
+    <button mat-raised-button class="confirm-btn" color="accent" >Submit</button>
+    <button (click)="goToHome()" mat-raised-button color="warn" class="cancel-btn">Cancel</button>
+  </div>
+</div>

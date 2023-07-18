@@ -1,0 +1,27 @@
+.remove-card-wrapper{
+  max-width: 40%;
+  background-color: #222629;
+  border-radius: 0.5rem;
+  margin: 1.5rem auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 1rem;
+  color: white;
+}
+.remove-title{
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+}
+.btns-container{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  column-gap: 0.5rem;
+}
+.confirm-btn,.cancel-btn{
+  max-width: 200px;
+  width: 100%;
+  font-family: 'Roboto Condensed', sans-serif;
+}

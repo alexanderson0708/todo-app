@@ -1,0 +1,42 @@
+<form class="login-form" [formGroup]="formGroup" (input)="onFormChange()" (ngSubmit)="onLogin()">
+  <p class="login-title">Login</p>
+  <p
+    class="wrong-e-mail-or-pass"
+    *ngIf="error$|async">
+    Wrong e-mail or password
+  </p>
+
+  <div class="login-container">
+    <p class="email-title">Email</p>
+    <mat-form-field>
+      <mat-error *ngIf="formGroup.hasError('required','login')">*required</mat-error>
+      <input type="email"
+             matInput
+             placeholder="Ex. pat@example.com"
+             formControlName = "login">
+    </mat-form-field>
+
+    <p class="password-title">Password</p>
+    <mat-form-field>
+      <mat-error *ngIf="formGroup.hasError('required','password')">*required</mat-error>
+      <input type="password"
+             matInput
+             placeholder="**********"
+             formControlName = "password">
+    </mat-form-field>
+  </div>
+
+  <div class="btns-container">
+    <button (click)="goToRegistration()" mat-raised-button class="registration-btn">Registration</button>
+
+    <button
+      mat-raised-button
+      class="confirm-btn"
+      color="accent"
+      [disabled]="formGroup.invalid||!!formError"
+      type="submit"
+    >Login</button>
+
+    <button (click)="goToHome()" mat-raised-button color="warn" class="cancel-btn">Cancel</button>
+  </div>
+</form>
