@@ -16,7 +16,7 @@ export const getServerError = createSelector(
   getFeature,
   state => state.error
 )
-export const getCourseData = createSelector(
+export const getTodos = createSelector(
   getFeature,
   state => state.data
 )

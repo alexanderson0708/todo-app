@@ -1,6 +1,6 @@
 import { HttpParams } from "@angular/common/http";
 import { createAction, props } from "@ngrx/store";
-import {TodoModel, TodoModelDto} from "./todo.state";
+import {TodoModel, TodoModelDto, TodoResponse} from "./todo.state";
 
 //-------------GET_TODO-----------//
 
@@ -8,7 +8,7 @@ export const getTodos = createAction('[TODO (App)] GET_TODOS')
 
 export const getTodosSuccess = createAction(
   '[TODO] GET_TODOS_SUCCESS',
-  props<{todo:TodoModel[]}>())
+  props<{todo:TodoResponse}>())
 
 export const getTodosError = createAction(
   '[TODO] GET_TODOS_ERROR',
@@ -38,7 +38,7 @@ export const removeTodo = createAction(
 )
 export const removeTodoSuccess = createAction(
   '[TODO] REMOVE_TODO_SUCCESS',
-  props<{id:string}>()
+  props<{todo:TodoModel}>()
 )
 export const removeTodoError = createAction(
   '[TODO] REMOVE_TODO_ERROR',

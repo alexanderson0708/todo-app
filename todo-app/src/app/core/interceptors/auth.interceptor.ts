@@ -3,23 +3,46 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor, HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {catchError, mergeMap, Observable, take, throwError} from 'rxjs';
 import {select, Store} from "@ngrx/store";
 import {AppState} from "../store/app.state";
 import * as AuthSelectors from '../store/auth-store/auth.selector'
-import {AuthToken} from "../store";
+import {Router} from "@angular/router";
+import {NotificationsService} from "../services/notifications.service";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  token$:Observable<string|AuthToken|undefined> = this.store$.pipe(select(AuthSelectors.getAccessToken))
-  constructor(private store$:Store<AppState>) {
+  constructor(private store$:Store<AppState>,
+              private router:Router,
+              private notifications:NotificationsService
+              ) {
   }
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const cloned = request.clone({
-      headers: request.headers.append('Auth', this.token$+'')
-    })
-    return next.handle(cloned);
+    return this.store$.pipe(
+      select(AuthSelectors.getAccessToken),
+      take(1),
+      mergeMap(token => {
+        if(token){
+          request = request.clone({
+            setHeaders:{
+              Authorization: `Token ${token}`
+            }
+          });
+        }
+        return next.handle(request).pipe(
+          catchError((err) => {
+            if (err instanceof HttpErrorResponse){
+              if(err.status===401){
+                this.notifications.error('Unauthorized')
+                this.router.navigate(['/login'])
+              }
+            }
+            return throwError(err)
+          })
+        )
+      })
+    )
   }
 }

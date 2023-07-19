@@ -25,7 +25,7 @@ export class AuthEffect{
     this.actions$.pipe(
       ofType(loginSuccess),
       tap( () => {
-        this.router.navigate(['/todo'])
+        this.router.navigate(['/'])
       })
     ),{dispatch:false}
   )
@@ -34,7 +34,7 @@ export class AuthEffect{
       ofType(logout),
       tap( () =>{
         this.authService.logout()
-        this.router.navigate(['/auth'])
+        this.router.navigate(['/'])
       })
     ),{dispatch:false}
   )

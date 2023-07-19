@@ -6,18 +6,19 @@
     >#JUSTTODOIT</a>
   </div>
   <div class="auth-container">
-    <a [routerLink]="['/login']" class="user-login">
+    <button [routerLink]="['/login']" class="user-login" [disabled]="isAuth$|async">
       <mat-icon>person_outline</mat-icon>
-      username
-    </a>
-    <a
-      href=""
+      {{username$|async}}
+
+    </button>
+    <button
+      [routerLink]="['/']"
       class="logout"
       appIsAuth
       (click)="onLogout()"
     >
       <mat-icon>exit_to_app</mat-icon>
       logout
-    </a>
+    </button>
   </div>
 </div>

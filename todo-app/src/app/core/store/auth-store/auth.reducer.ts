@@ -1,5 +1,5 @@
-import { Action, createReducer, on, props } from "@ngrx/store";
-import {AuthToken, initialAuthState} from "./auth.state";
+import { createReducer, on} from "@ngrx/store";
+import {initialAuthState, User} from "./auth.state";
 import * as AuthActions from './auth.action'
 
 export const AUTH_FEATURE_NAME = 'auth'
@@ -12,7 +12,7 @@ export const authReducer = createReducer(initialAuthState,
       loading:true
     }
   }),
-  on(AuthActions.loginSuccess, (state, authData:AuthToken) =>{
+  on(AuthActions.loginSuccess, (state, authData:any) =>{
     console.log('LOGIN SUCCESS action being handled!');
     return {
       ...state,
@@ -20,16 +20,16 @@ export const authReducer = createReducer(initialAuthState,
       authStatus:true,
       loading:false,
       loaded:true,
-      error:''
+      error:null
     }
   }),
   on(AuthActions.loginError, (state, {error}) =>{
     console.log('LOGIN ERROR action being handled!');
     return {
       ...state,
-      loading:true,
+      loading:false,
       loaded:false,
-      error,
+      error:error,
       authStatus:false
     }
   }),
@@ -38,8 +38,7 @@ export const authReducer = createReducer(initialAuthState,
     console.log('LOGOUT action being handled!');
     return {
       ...state,
-      user:null,
-      token:{token:''},
+      authData:null,
       loading:false,
       loaded:true,
       authStatus:false,

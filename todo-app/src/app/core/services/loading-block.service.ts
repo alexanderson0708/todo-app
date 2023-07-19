@@ -10,9 +10,11 @@ export class LoadingBlockService{
 
   showIndicator(){
     this._isLoading$.next(true)
+    console.log('show!')
   }
 
   hideIndicator(){
     this._isLoading$.next(false)
+    console.log('hide!')
   }
 }

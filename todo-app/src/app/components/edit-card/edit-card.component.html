@@ -1,1 +1,41 @@
-<p>edit-card works!</p>
+<form class="add-card-wrapper" [formGroup] = "editTodoGroup">
+  <p class="add-card-title">Edit card</p>
+  <div class="title-container">
+    <p class="title-label">Title</p>
+    <mat-form-field>
+      <input matInput placeholder="Ex. Pizza"
+             formControlName = "title">
+    </mat-form-field>
+  </div>
+
+  <div class="date-container">
+    <p class="date-label">Date</p>
+    <mat-form-field>
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker"
+             formControlName = "date">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div class="description-container">
+    <p class="description-label">Description(optional)</p>
+    <mat-form-field>
+      <textarea matInput placeholder="Ex. It makes me feel..."
+                formControlName="description"
+      ></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="directory-container">
+    <p class="description-label"><mat-checkbox formControlName="completed">Completed</mat-checkbox></p>
+  </div>
+
+
+  <div class="btns-container">
+    <button mat-raised-button class="confirm-btn" color="accent" (click)="updateTodo()">Edit</button>
+    <button (click)="goToHome()" mat-raised-button color="warn" class="cancel-btn">Cancel</button>
+  </div>
+</form>

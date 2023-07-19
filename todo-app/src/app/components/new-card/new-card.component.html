@@ -23,24 +23,19 @@
   <div class="description-container">
     <p class="description-label">Description(optional)</p>
     <mat-form-field>
-      <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+      <textarea matInput placeholder="Ex. It makes me feel..."
+      formControlName="description"
+      ></textarea>
     </mat-form-field>
   </div>
 
   <div class="directory-container">
-    <p class="description-label">Priority</p>
-    <mat-form-field>
-      <mat-select
-        [(value)]="selected"
-        formControlName = "priority">
-        <mat-option value="main">Main-task</mat-option>
-        <mat-option value="subtask">Subtask</mat-option>
-      </mat-select>
-    </mat-form-field>
+    <p class="description-label"><mat-checkbox formControlName="completed">Completed</mat-checkbox></p>
   </div>
 
+
   <div class="btns-container">
-    <button mat-raised-button class="confirm-btn" color="accent" >Submit</button>
+    <button mat-raised-button class="confirm-btn" color="accent" (click)="addTodo()">Submit</button>
     <button (click)="goToHome()" mat-raised-button color="warn" class="cancel-btn">Cancel</button>
   </div>
 </form>

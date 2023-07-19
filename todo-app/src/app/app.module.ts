@@ -14,6 +14,12 @@ import {MatButtonModule} from "@angular/material/button";
 import {ErrPageComponent} from "./pages/error-page/err-page.component";
 import { CreatePageComponent } from './pages/create-todo-page/create-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {CommonModule} from "@angular/common";
+import {FormsModule} from "@angular/forms";
+import {SharedModule} from "./shared/shared.module";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {EditPageComponent} from "./pages/edit-todo-page/edit-page.component";
 
 @NgModule({
   declarations: [
@@ -22,8 +28,11 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
     ErrPageComponent,
     CreatePageComponent,
     LoginPageComponent,
+    EditPageComponent,
   ],
   imports: [
+    CommonModule,
+    FormsModule,
     BrowserModule,
     ComponentsModule,
     CoreModule,
@@ -32,11 +41,14 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
     HttpClientModule,
     AuthModule,
     MatButtonModule,
+    MatCheckboxModule,
+    MatSnackBarModule,
     StoreDevtoolsModule.instrument({
-      maxAge:25,
+      maxAge: 25,
       logOnly: !isDevMode()
     }),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

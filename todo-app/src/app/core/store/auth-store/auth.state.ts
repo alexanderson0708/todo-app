@@ -1,29 +1,26 @@
 export interface User {
-  email:string;
-  password:string;
+  token:string,
+  username: string,
+  user_id:number,
+  type?:string
 }
 
-export interface AuthToken {
-  token:string
-}
 
 export interface AuthState {
-  user:User|null,
-  token?:AuthToken,
+  authData:User|null,
   loading:boolean,
   loaded:boolean,
-  error:Error|null|string,
+  error?:AuthErrMsg|null
   authStatus:boolean,
 }
 
+export interface AuthErrMsg{
+  error:{
+    message:string
+  }
+}
 export const initialAuthState:AuthState = {
-  user:{
-    email:'',
-    password:''
-  },
-  token:{
-    token:''
-  },
+  authData:null,
   loading:false,
   loaded:true,
   error:null,

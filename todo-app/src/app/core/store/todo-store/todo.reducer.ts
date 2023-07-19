@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from "@ngrx/store";
-import {initialTodoState} from "./todo.state";
+import {initialTodoState, TodoModel, TodoResponse} from "./todo.state";
 import * as todoActions from '../todo-store/todo.action'
 import {updateTodo} from "../todo-store/todo.action";
 
@@ -17,10 +17,12 @@ export const todoReducer = createReducer(
   }),
   on(todoActions.getTodosSuccess, (state, {todo}) =>{
     console.log('GET_TODO_SUCCESS action being handled!');
-    const data = [...todo]
+    const data = todo.results
     return {
       ...state,
-      data,
+      data:{
+        results:data
+      },
       loading:false,
       loaded:true,
     };
@@ -48,15 +50,19 @@ export const todoReducer = createReducer(
     const {id, user, completed,title} = todo
     return {
       ...state,
-      data:[
-        {
-          id:id,
-          user:user,
-          completed:completed,
-          title:title
-        },
-        ...state.data
-      ],
+      data:{
+        results: [
+          {
+            id:id,
+            user:user,
+            completed:completed,
+            title:title,
+            created_at:'',
+            updated_at:'',
+          },
+          ...state.data.results
+        ]
+      },
       loading:false,
       loaded:true,
     }
@@ -70,10 +76,14 @@ export const todoReducer = createReducer(
     }
   }),
 //---------------------------REMOVE COURSES------------------------
-  on(todoActions.removeTodo, (state) =>{
+  on(todoActions.removeTodo, (state, {id}) =>{
     console.log('REMOVE_TODO action being handled!');
+    const data = state.data.results.filter(el => el.id !== id)
     return {
       ...state,
+      data:{
+        results:data
+      },
       loading:true,
     }
   }),
@@ -86,12 +96,10 @@ export const todoReducer = createReducer(
       error,
     }
   }),
-  on(todoActions.removeTodoSuccess, (state, {id}) =>{
+  on(todoActions.removeTodoSuccess, (state, {todo}) =>{
     console.log('REMOVE_TODO_SUCCESS action being handled!');
-    const data = state.data.filter(course => course.id!==id)
     return {
       ...state,
-      data,
       loading:false,
       loaded:true,
     }
@@ -115,10 +123,12 @@ export const todoReducer = createReducer(
   }),
   on(todoActions.updateTodoSuccess, (state, {todo}) =>{
     console.log('UPDATE_TODO_SUCCESS action being handled!');
-    const data = state.data.map((el) => todo.id === el.id ? todo : el)
+    const data = state.data.results.map((el) => todo.id === el.id ? todo : el)
     return {
       ...state,
-      data,
+      data:{
+        results:data
+      },
       loading:false,
       loaded:true,
     }

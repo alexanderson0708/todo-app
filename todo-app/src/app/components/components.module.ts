@@ -21,6 +21,9 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import {AddCardBtnComponent} from "./add-card-btn/add-card-btn.component";
 import { LoadingBlockComponent } from './loading-block/loading-block.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatRadioModule} from "@angular/material/radio";
 
 
 
@@ -45,13 +48,16 @@ import { LoadingBlockComponent } from './loading-block/loading-block.component';
     MatSelectModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    MatCheckboxModule,
     ReactiveFormsModule,
     MatChipsModule,
     MatAutocompleteModule,
     MatDatepickerModule,
     MatNativeDateModule,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+    MatTooltipModule,
+    MatRadioModule
   ],
   exports: [
     BreadcrumbComponent,

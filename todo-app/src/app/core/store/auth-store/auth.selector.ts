@@ -17,26 +17,35 @@ export const getServerError = createSelector(
   getFeature,
   state => state.error
 )
+export const getServerErrorMsg = createSelector(
+  getServerError,
+  err => err ? err.error.message : ''
+)
 export const getAuthData = createSelector(
   getFeature,
-  state => state.token
+  state => state.authData
 )
 export const getAccessToken = createSelector(
   getAuthData,
-  token => token?.token && token
+  authData => authData ? authData.token : null
 )
 
 export const isAuth = createSelector(
   getAccessToken,
-  token => !!token
+   token => token ? true : false
 )
 
 export const getUser = createSelector(
   getFeature,
-  state => state.user
+  state => state.authData
 )
 
 export const getEmail = createSelector(
   getUser,
-  user => user?.email
+  user => user ? user.username : 'login'
+)
+
+export const getUserId = createSelector(
+  getUser,
+  user => user ? user.user_id : null
 )

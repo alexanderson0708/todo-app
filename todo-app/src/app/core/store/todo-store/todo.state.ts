@@ -4,16 +4,24 @@ export interface TodoModel {
   id:string
   title:string,
   completed:boolean,
-  user:string
+  updated_at:string,
+  created_at:string,
+  user?:number|null
 }
 
 export interface TodoModelDto {
   title:string,
   completed:boolean,
-  user:string
+  updated_at?:string,
+  created_at?:string,
+  user?:number|null
+}
+
+export interface TodoResponse{
+    results:TodoModel[]
 }
 export interface TodoState {
-  data: TodoModel[],
+  data: TodoResponse,
   breadcrumbsHeader:string,
   loading:boolean,
   loaded:boolean,
@@ -21,16 +29,21 @@ export interface TodoState {
 }
 
 export const initialTodoState:TodoState = {
-  data:[
-    {
-      id: '',
-      title:'',
-      completed:false,
-      user:'',
-    },
-  ],
+  data:{
+    results:[
+      {
+        id: '',
+        title:'',
+        completed:false,
+        updated_at:'',
+        created_at:'',
+        user:null
+      },
+    ]
+  },
   breadcrumbsHeader:'',
   loading:true,
   loaded:false,
   error:null,
+
 }

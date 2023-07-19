@@ -22,7 +22,7 @@ const INTERCEPTOR_PROVIDER:Provider = {
       runtimeChecks:{
         strictStateImmutability:true,
         strictActionImmutability:true,
-        strictStateSerializability:true,
+        strictStateSerializability:false,
         strictActionSerializability:false,
         strictActionWithinNgZone:true,
         strictActionTypeUniqueness:true,

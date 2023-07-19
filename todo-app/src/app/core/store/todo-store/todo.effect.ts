@@ -4,6 +4,8 @@ import * as TodoActions from './todo.action'
 import { catchError, exhaustMap, of, map, switchMap,tap} from "rxjs";
 import { Router } from "@angular/router";
 import {TodoService} from "../../services/todo.service";
+import {createTodoSuccess, updateTodoSuccess} from "./todo.action";
+import {NotificationsService} from "../../services/notifications.service";
 
 
 @Injectable()
@@ -14,7 +16,8 @@ export class TodoEffect{
   constructor(
     private todoService: TodoService,
     private actions:Actions,
-    private router:Router
+    private router:Router,
+    private notificationsService: NotificationsService
   ){
     console.log('[TODO_EFFECTS]');
   }
@@ -24,7 +27,10 @@ export class TodoEffect{
       ofType(TodoActions.getTodos),
       switchMap(()=>
         this.todoService.getTodos().pipe(
-          map((todo)=>TodoActions.getTodosSuccess({todo})),
+          map((todo)=> {
+            return TodoActions.getTodosSuccess({todo})
+          }
+          ),
           catchError((error)=>of(TodoActions.getTodosError({error})))
         )
       )
@@ -48,8 +54,15 @@ export class TodoEffect{
       ofType(TodoActions.updateTodo),
       switchMap(({id, body}) =>
         this.todoService.updateTodo(id, body).pipe(
-            map(todo => TodoActions.updateTodoSuccess({todo})),
-            catchError(error=>of(TodoActions.updateTodoError({error})))
+            map(todo =>
+            {
+              this.notificationsService.success('Todo was created!')
+              return TodoActions.updateTodoSuccess({todo})
+            }),
+            catchError(error=>{
+              this.notificationsService.success('Todo was not created!')
+              return of(TodoActions.updateTodoError({error}))
+            })
           )
       )
     )
@@ -69,18 +82,36 @@ export class TodoEffect{
     )
   )
 
-  // removeTodo$ = createEffect(()=>
-  //   this.actions.pipe(
-  //     ofType(TodoActions.removeTodo),
-  //     switchMap(({id}) =>
-  //       this.todoService.removeTodo(id).pipe(
-  //           map(() => TodoActions.removeTodoSuccess()),
-  //           catchError(error => of(TodoActions.removeTodoError({error})))
-  //         )
-  //     )
-  //   )
-  // )
+  removeTodo$ = createEffect(()=>
+    this.actions.pipe(
+      ofType(TodoActions.removeTodo),
+      switchMap(({id}) =>
+        this.todoService.removeTodo(id).pipe(
+            map((todo) => TodoActions.removeTodoSuccess({todo})),
+            catchError(error => of(TodoActions.removeTodoError({error})))
+          )
+      )
+    )
+  )
 
+
+  redirectAfterAdd$ = createEffect(()=>
+    this.actions.pipe(
+      ofType(createTodoSuccess),
+      tap( () => {
+        this.router.navigate(['/'])
+      })
+    ),{dispatch:false}
+  )
+
+  redirectAfterUpdate$ = createEffect(()=>
+    this.actions.pipe(
+      ofType(updateTodoSuccess),
+      tap( () => {
+        this.router.navigate(['/'])
+      })
+    ),{dispatch:false}
+  )
 
 }
 

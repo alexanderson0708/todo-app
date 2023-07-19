@@ -1,9 +1,9 @@
 <form class="login-form" [formGroup]="formGroup" (input)="onFormChange()" (ngSubmit)="onLogin()">
   <p class="login-title">Login</p>
-  <p
+  <p style="color: red"
     class="wrong-e-mail-or-pass"
-    *ngIf="error$|async">
-    Wrong e-mail or password
+    *ngIf="error$">
+    {{error$}}
   </p>
 
   <div class="login-container">
@@ -13,6 +13,7 @@
       <input type="email"
              matInput
              placeholder="Ex. pat@example.com"
+             autocomplete="email"
              formControlName = "email">
     </mat-form-field>
 
@@ -22,12 +23,13 @@
       <input type="password"
              matInput
              placeholder="**********"
+             autocomplete="password"
              formControlName = "password">
     </mat-form-field>
   </div>
 
   <div class="btns-container">
-    <button (click)="goToRegistration()" mat-raised-button class="registration-btn">Registration</button>
+    <button disabled="true" (click)="goToRegistration()" mat-raised-button class="registration-btn">Registration</button>
 
     <button
       mat-raised-button

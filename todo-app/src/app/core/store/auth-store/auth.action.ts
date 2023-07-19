@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { AuthState } from "./auth.state";
+import {AuthErrMsg, AuthState} from "./auth.state";
 
 export const login = createAction(
   '[Auth] LOGIN',
@@ -11,7 +11,7 @@ export const loginSuccess = createAction(
 );
 export const loginError = createAction(
   '[Auth] LOGIN ERROR',
-  props<{error:Error|null|string}>()
+  props<{error:AuthErrMsg}>()
 );
 
 export const logout = createAction('[Auth] LOGOUT')

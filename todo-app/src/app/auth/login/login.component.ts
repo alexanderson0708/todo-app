@@ -1,39 +1,51 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {select, Store} from "@ngrx/store";
 import {AppState} from "../../core/store/app.state";
 import {Observable} from "rxjs";
 import * as AuthSelectors from '../../core/store/auth-store/auth.selector'
-import {AuthToken, login} from "../../core/store";
+import {login} from "../../core/store";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../core/services/auth.service";
+import {LoadingBlockService} from "../../core/services/loading-block.service";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
   @Input() formError = ''
   formGroup : FormGroup
 
   loading$: Observable<boolean> = this.store$.pipe(select(AuthSelectors.getLoading))
   loaded$: Observable<boolean> = this.store$.pipe(select(AuthSelectors.getLoaded))
-  error$: Observable<Error|null|string> = this.store$.pipe(select(AuthSelectors.getServerError))
+  error$: string = ''
   isAuth$: Observable<boolean> = this.store$.pipe(select(AuthSelectors.isAuth))
-  getToken$: Observable<string|AuthToken|undefined> = this.store$.pipe(select(AuthSelectors.getAccessToken))
+  getToken$: Observable<string|null> = this.store$.pipe(select(AuthSelectors.getAccessToken))
 
   constructor(
     private authService:AuthService,
     private router:Router,
     // private loadingBlock: LoadingBlockService
-    private store$:Store<AppState>
+    private store$:Store<AppState>,
+    private loadingService:LoadingBlockService
   ) {
     this.formGroup = new FormGroup({
-      email: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required])
 
+    })
+  }
+
+  ngOnInit() {
+    this.store$.pipe(select(AuthSelectors.getServerErrorMsg)).subscribe(value => {
+      this.error$ = value
+    })
+
+    this.loading$.subscribe(value => {
+      value ? this.loadingService.showIndicator() : this.loadingService.hideIndicator()
     })
   }
 
@@ -50,11 +62,7 @@ export class LoginComponent {
   }
 
   onLogin(){
-    this.authService.login(this.formGroup.value).subscribe((res)=>{
-      console.log(res)
-      console.log(1)
-    })
-    // this.store$.dispatch(login(this.formGroup.value))
-    console.log(this.formGroup.value)
+    this.store$.dispatch(login(this.formGroup.value))
+
   }
 }
