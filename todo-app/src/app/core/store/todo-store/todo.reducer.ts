@@ -2,6 +2,7 @@ import { Action, createReducer, on } from "@ngrx/store";
 import {initialTodoState, TodoModel, TodoResponse} from "./todo.state";
 import * as todoActions from '../todo-store/todo.action'
 import {updateTodo} from "../todo-store/todo.action";
+import * as AuthActions from "../auth-store/auth.action";
 
 export const TODO_FEATURE_NAME = 'todo'
 
@@ -138,6 +139,27 @@ export const todoReducer = createReducer(
     return {
       ...state,
       breadCrumbsHeader
+    }
+  }),
+  on(todoActions.logoutTodo, state =>{
+    console.log('LOGOUT_TODO action being handled!');
+    return {
+      data:{
+        results:[
+          {
+            id: '',
+            title:'',
+            completed:false,
+            updated_at:'',
+            created_at:'',
+            user:null
+          },
+        ]
+      },
+      breadcrumbsHeader:'',
+      loading:false,
+      loaded:false,
+      error:null,
     }
   }),
 )

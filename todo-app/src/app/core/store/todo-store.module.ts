@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {StoreModule} from "@ngrx/store";
+import {Store, StoreModule} from "@ngrx/store";
 import {AUTH_FEATURE_NAME, authReducer} from "./auth-store/auth.reducer";
 import {TODO_FEATURE_NAME, todoReducer} from "./todo-store/todo.reducer";
 import {EffectsModule} from "@ngrx/effects";

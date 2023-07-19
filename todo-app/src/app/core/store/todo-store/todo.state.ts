@@ -45,5 +45,4 @@ export const initialTodoState:TodoState = {
   loading:false,
   loaded:false,
   error:null,
-
 }

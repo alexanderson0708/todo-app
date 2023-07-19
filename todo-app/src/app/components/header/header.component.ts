@@ -3,7 +3,8 @@ import {select, Store} from "@ngrx/store";
 import {AppState} from "../../core/store/app.state";
 import * as AuthSelectors from '../../core/store/auth-store/auth.selector'
 import {Observable} from "rxjs";
-import {login, logout} from "../../core/store";
+import {logout, logoutTodo} from "../../core/store";
+
 
 @Component({
   selector: 'app-header',
@@ -19,5 +20,6 @@ export class HeaderComponent {
   }
   onLogout(){
     this.store$.dispatch(logout())
+    this.store$.dispatch(logoutTodo())
   }
 }

@@ -6,6 +6,7 @@ import { Router } from "@angular/router";
 import {TodoService} from "../../services/todo.service";
 import {createTodoSuccess, updateTodoSuccess} from "./todo.action";
 import {NotificationsService} from "../../services/notifications.service";
+import {logout} from "../auth-store/auth.action";
 
 
 @Injectable()

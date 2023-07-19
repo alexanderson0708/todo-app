@@ -78,3 +78,6 @@ export const updateBreadcrumbs = createAction(
   '[TODO] UPDATE Breadcrumbs',
   props<{breadCrumbsHeader:string}>()
 )
+
+export const logoutTodo = createAction('[TODO] LOGOUT')
+
