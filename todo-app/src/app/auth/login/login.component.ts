@@ -8,6 +8,7 @@ import {login} from "../../core/store";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../core/services/auth.service";
 import {LoadingBlockService} from "../../core/services/loading-block.service";
+import {NotificationsService} from "../../core/services/notifications.service";
 
 @Component({
   selector: 'app-login',
@@ -20,17 +21,14 @@ export class LoginComponent implements OnInit{
   formGroup : FormGroup
 
   loading$: Observable<boolean> = this.store$.pipe(select(AuthSelectors.getLoading))
-  loaded$: Observable<boolean> = this.store$.pipe(select(AuthSelectors.getLoaded))
   error$: string = ''
-  isAuth$: Observable<boolean> = this.store$.pipe(select(AuthSelectors.isAuth))
-  getToken$: Observable<string|null> = this.store$.pipe(select(AuthSelectors.getAccessToken))
-
   constructor(
     private authService:AuthService,
     private router:Router,
     // private loadingBlock: LoadingBlockService
     private store$:Store<AppState>,
-    private loadingService:LoadingBlockService
+    private loadingService:LoadingBlockService,
+    private notificationsService:NotificationsService
   ) {
     this.formGroup = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -54,6 +52,7 @@ export class LoginComponent implements OnInit{
     this.router.navigate(['/registration'])
   }
   goToHome(){
+    this.notificationsService.success('ssssssssssssssssssssss')
     this.router.navigate(['/'])
   }
 

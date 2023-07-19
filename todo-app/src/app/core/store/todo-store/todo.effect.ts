@@ -56,11 +56,11 @@ export class TodoEffect{
         this.todoService.updateTodo(id, body).pipe(
             map(todo =>
             {
-              this.notificationsService.success('Todo was created!')
+              this.notificationsService.success('Todo has been updated!')
               return TodoActions.updateTodoSuccess({todo})
             }),
             catchError(error=>{
-              this.notificationsService.success('Todo was not created!')
+              this.notificationsService.error('Todo has not been updated!')
               return of(TodoActions.updateTodoError({error}))
             })
           )
@@ -75,8 +75,14 @@ export class TodoEffect{
       switchMap((body) =>
         this.todoService.createTodo(body.createTodo)
           .pipe(
-            map(todo => TodoActions.createTodoSuccess({todo})),
-            catchError(error=>of(TodoActions.createTodoError({error})))
+            map(todo => {
+              this.notificationsService.success('Todo has been created!')
+              return TodoActions.createTodoSuccess({todo})
+            }),
+            catchError(error => {
+              this.notificationsService.error('Todo has not been created!')
+              return of(TodoActions.createTodoError({error}))
+            })
           )
       )
     )
@@ -87,8 +93,14 @@ export class TodoEffect{
       ofType(TodoActions.removeTodo),
       switchMap(({id}) =>
         this.todoService.removeTodo(id).pipe(
-            map((todo) => TodoActions.removeTodoSuccess({todo})),
-            catchError(error => of(TodoActions.removeTodoError({error})))
+            map((todo) => {
+              this.notificationsService.success('Todo has been deleted!')
+              return TodoActions.removeTodoSuccess({todo})
+            }),
+            catchError(error => {
+              this.notificationsService.error('Todo has not been deleted!')
+              return of(TodoActions.removeTodoError({error}))
+            })
           )
       )
     )
