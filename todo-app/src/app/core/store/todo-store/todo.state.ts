@@ -42,7 +42,7 @@ export const initialTodoState:TodoState = {
     ]
   },
   breadcrumbsHeader:'',
-  loading:true,
+  loading:false,
   loaded:false,
   error:null,
 

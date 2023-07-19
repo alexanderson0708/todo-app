@@ -2,8 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {select, Store} from "@ngrx/store";
 import {AppState} from "../../core/store/app.state";
-import {Observable} from "rxjs";
+import {Observable, withLatestFrom} from "rxjs";
 import * as AuthSelectors from '../../core/store/auth-store/auth.selector'
+import * as TodoSelectors from '../../core/store/todo-store/todo.selector'
 import {login} from "../../core/store";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../core/services/auth.service";
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit{
 
   @Input() formError = ''
   formGroup : FormGroup
+
 
   loading$: Observable<boolean> = this.store$.pipe(select(AuthSelectors.getLoading))
   error$: string = ''
@@ -42,9 +44,6 @@ export class LoginComponent implements OnInit{
       this.error$ = value
     })
 
-    this.loading$.subscribe(value => {
-      value ? this.loadingService.showIndicator() : this.loadingService.hideIndicator()
-    })
   }
 
 
@@ -52,7 +51,6 @@ export class LoginComponent implements OnInit{
     this.router.navigate(['/registration'])
   }
   goToHome(){
-    this.notificationsService.success('ssssssssssssssssssssss')
     this.router.navigate(['/'])
   }
 
