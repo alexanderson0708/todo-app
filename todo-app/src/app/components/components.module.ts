@@ -24,6 +24,7 @@ import { LoadingBlockComponent } from './loading-block/loading-block.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatRadioModule} from "@angular/material/radio";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 
@@ -57,7 +58,8 @@ import {MatRadioModule} from "@angular/material/radio";
     RouterLink,
     RouterLinkActive,
     MatTooltipModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDialogModule
   ],
   exports: [
     BreadcrumbComponent,

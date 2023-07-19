@@ -14,13 +14,10 @@
     >
     </mat-checkbox>
 
-    <button mat-icon-button
-            class="delete-btn"
-            color="white"
-            (click)="delete(todo.id)"
-    >
+    <button mat-icon-button (click)="openDialog(todo.id,'1000ms', '500ms')">
       <mat-icon>delete_outline</mat-icon>
     </button>
+
     <button
       mat-icon-button
       class="edit-btn"
